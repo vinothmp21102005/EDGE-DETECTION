@@ -1,4 +1,4 @@
-# EDGE-DETECTION
+# EXP-NO-6 EDGE-DETECTION
 ## Aim:
 To perform edge detection using Sobel, Laplacian, and Canny edge detectors.
 
@@ -19,20 +19,52 @@ Convert the image to grayscale
 Using Sobel operator from cv2,detect the edges of the image.
 
 ### Step5:
-
 Using Laplacian operator from cv2,detect the edges of the image and Using Canny operator from cv2,detect the edges of the image.
+```
+DEVELOPED BY : VINOTH M P
+REG NO : 212223240182
+```
+## Program :
+```
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
 
-## Output:
+image = cv2.imread('Tiger.jpg')  # Replace with your image path
+gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+# Original Image
+plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+plt.title('Original Image')
+plt.axis('off')
+```
+![image](https://github.com/user-attachments/assets/9f75e1b7-4be8-4f10-9bac-d24ede5cf020)
+
 ### SOBEL EDGE DETECTOR
-
-![output](./sobel.png)
-
+```
+sobel_x = cv2.Sobel(gray_image, cv2.CV_64F, 1, 0, ksize=5)  # Sobel in x direction
+sobel_y = cv2.Sobel(gray_image, cv2.CV_64F, 0, 1, ksize=5)  # Sobel in y direction
+sobel_combined = cv2.magnitude(sobel_x, sobel_y)  # Combine both directions
+plt.imshow(sobel_combined, cmap='gray')
+plt.title('Sobel Edge Detection')
+plt.axis('off')
+```
+![image](https://github.com/user-attachments/assets/0cee0a8e-86de-46ae-aa80-d52d2bf82bbb)
 ### LAPLACIAN EDGE DETECTOR
-![output](./laplacian.png)
-
-
+```
+laplacian = cv2.Laplacian(gray_image, cv2.CV_64F)
+plt.imshow(laplacian, cmap='gray')
+plt.title('Laplacian Edge Detection')
+plt.axis('off')
+```
+![image](https://github.com/user-attachments/assets/33b83313-dfdd-40f7-bba4-445dafa5e5f8)
 ### CANNY EDGE DETECTOR
-![output](./canny.png)
+```
+canny_edges = cv2.Canny(gray_image, 50, 150)
+plt.imshow(canny_edges, cmap='gray')
+plt.title('Canny Edge Detection')
+plt.axis('off')  
+```
+![image](https://github.com/user-attachments/assets/e7b1a477-ae34-475d-bb42-08e02b33bcc1)
 
 ## Result:
 Thus the edges are detected using Sobel, Laplacian, and Canny edge detectors.
